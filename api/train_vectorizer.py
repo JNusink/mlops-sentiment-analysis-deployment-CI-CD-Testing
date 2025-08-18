@@ -13,5 +13,3 @@ vectorizer.fit(X)
 # Save vectorizer
 with open("vectorizer.pkl", "wb") as vectorizer_file:
     pickle.dump(vectorizer, vectorizer_file)
-
-

@@ -5,6 +5,7 @@ import os
 
 def test_dashboard_launches():
     app_path = os.path.join(os.path.dirname(__file__), "app.py")
+
     proc = subprocess.Popen(
         [
             "streamlit",
@@ -19,6 +20,7 @@ def test_dashboard_launches():
         text=True,
         cwd=os.path.dirname(__file__),
     )
+
     try:
         time.sleep(15)  # Increased for CI stability
         assert proc.poll() is None, (
