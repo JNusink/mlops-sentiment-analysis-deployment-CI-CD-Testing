@@ -21,7 +21,7 @@ def test_dashboard_launches():
         cwd=os.path.dirname(__file__)
     )
     try:
-        time.sleep(10)  # Increased for CI stability
+        time.sleep(15)  # Increased for CI stability
         assert proc.poll() is None, (
             f"Streamlit failed to launch: return code={proc.poll()}, "
             f"stderr={proc.stderr.read()}"
