@@ -3,7 +3,7 @@ from main import app
 
 client = TestClient(app)
 
-# Add extra blank lines here
+# Add two blank lines here
 
 def test_predict_positive():
     response = client.post("/predict", json={"text": "This movie is awesome!"})
@@ -11,7 +11,7 @@ def test_predict_positive():
     assert response.json()["sentiment"] == "positive"
     assert 0 <= response.json()["confidence"] <= 1
 
-# Add extra blank lines here
+# Add two blank lines here
 
 def test_predict_negative():
     response = client.post("/predict", json={"text": "This movie is terrible!"})
@@ -19,7 +19,7 @@ def test_predict_negative():
     assert response.json()["sentiment"] == "negative"
     assert 0 <= response.json()["confidence"] <= 1
 
-# Add extra blank lines here
+# Add two blank lines here
 
 def test_predict_malformed():
     response = client.post("/predict", json={})

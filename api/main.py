@@ -14,7 +14,7 @@ logging.basicConfig(filename=os.path.join(log_dir, "sentiment.log"),
                     level=logging.INFO,
                     format="%(asctime)s - %(message)s")
 
-# Add blank line here
+# Add two blank lines here
 
 class TextInput(BaseModel):
     text: str

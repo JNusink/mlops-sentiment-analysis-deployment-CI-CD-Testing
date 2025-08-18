@@ -2,7 +2,7 @@ import subprocess
 import time
 import os
 
-# Add extra blank lines here
+# Add two blank lines here
 
 def test_dashboard_launches():
     app_path = os.path.join(os.path.dirname(__file__), "app.py")
@@ -21,7 +21,7 @@ def test_dashboard_launches():
         cwd=os.path.dirname(__file__)
     )
     try:
-        time.sleep(5)  # Reduced for CI efficiency
+        time.sleep(10)  # Increased for CI stability
         assert proc.poll() is None, (
             f"Streamlit failed to launch: return code={proc.poll()}, "
             f"stderr={proc.stderr.read()}"
