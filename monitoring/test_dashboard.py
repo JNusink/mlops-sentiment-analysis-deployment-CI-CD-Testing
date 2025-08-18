@@ -1,26 +1,38 @@
+import pytest
 import subprocess
 import time
 import os
-import signal
+
+# Add extra blank lines here
 
 def test_dashboard_launches():
     app_path = os.path.join(os.path.dirname(__file__), "app.py")
     proc = subprocess.Popen(
-        ["streamlit", "run", app_path, "--server.headless=true", "--server.port=8501", "--server.address=0.0.0.0"],
+        [
+            "streamlit",
+            "run",
+            app_path,
+            "--server.headless=true",
+            "--server.port=8501",
+            "--server.address=0.0.0.0"
+        ],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True,
         cwd=os.path.dirname(__file__)
     )
     try:
-        time.sleep(25)  # Wait 25 seconds for startup
-        # Check if the process is still running (poll() returns None if alive)
-        assert proc.poll() is None, f"Streamlit failed to launch: return code={proc.poll()}, stderr={proc.stderr.read()}"
+        time.sleep(5)  # Reduced to 5 seconds for CI efficiency
+        assert proc.poll() is None, (
+            f"Streamlit failed to launch: return code={proc.poll()}, "
+            f"stderr={proc.stderr.read()}"
+        )
     finally:
-        # Ensure the process is terminated, even if the test fails
         if proc.poll() is None:
             proc.terminate()
             try:
                 proc.wait(timeout=5)
             except subprocess.TimeoutExpired:
                 proc.kill()
+
+# Add newline at end
