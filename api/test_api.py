@@ -28,4 +28,4 @@ def test_predict_malformed():
     assert response.status_code == 422
     assert "detail" in response.json()
 
-# Single newline at end, no blank line
+# Single newline at end
