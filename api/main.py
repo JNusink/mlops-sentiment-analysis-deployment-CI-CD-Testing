@@ -10,7 +10,11 @@ app = FastAPI()
 log_dir = "/app/logs"
 if not os.path.exists(log_dir):
     os.makedirs(log_dir)
-logging.basicConfig(filename=os.path.join(log_dir, "sentiment.log"), level=logging.INFO, format="%(asctime)s - %(message)s")
+logging.basicConfig(
+    filename=os.path.join(log_dir, "sentiment.log"),
+    level=logging.INFO,
+    format="%(asctime)s - %(message)s"
+)
 
 # Two blank lines here
 
@@ -38,10 +42,13 @@ async def predict_sentiment(input_data: TextInput):
         prediction = model.predict(text_vectorized)[0]
         confidence = model.predict_proba(text_vectorized)[0][prediction]
         sentiment = "positive" if prediction == 1 else "negative"
-        logging.info(f"Text: {input_data.text}, Sentiment: {sentiment}, Confidence: {confidence:.2f}")
+        logging.info(
+            f"Text: {input_data.text}, Sentiment: {sentiment}, "
+            f"Confidence: {confidence:.2f}"
+        )
         return {"sentiment": sentiment, "confidence": float(confidence)}
     except Exception as e:
         logging.error(f"Prediction failed: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Prediction error: {str(e)}")
 
-# Single newline at end, no blank line
+# Single newline at end
