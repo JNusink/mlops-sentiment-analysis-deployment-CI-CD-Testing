@@ -21,5 +21,3 @@ if not df.empty:
     st.table(df.tail(10))
 else:
     st.write("No logs available yet.")
-
-

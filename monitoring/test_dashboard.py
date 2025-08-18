@@ -3,9 +3,6 @@ import time
 import os
 
 
-
-
-
 def test_dashboard_launches():
     app_path = os.path.join(os.path.dirname(__file__), "app.py")
     proc = subprocess.Popen(
@@ -15,12 +12,12 @@ def test_dashboard_launches():
             app_path,
             "--server.headless=true",
             "--server.port=8501",
-            "--server.address=0.0.0.0"
+            "--server.address=0.0.0.0",
         ],
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
         text=True,
-        cwd=os.path.dirname(__file__)
+        cwd=os.path.dirname(__file__),
     )
     try:
         time.sleep(15)  # Increased for CI stability
@@ -35,5 +32,3 @@ def test_dashboard_launches():
                 proc.wait(timeout=5)
             except subprocess.TimeoutExpired:
                 proc.kill()
-
-
