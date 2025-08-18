@@ -1,8 +1,13 @@
 import pickle
-from sklearn.feature_extraction.text import TfidfVectorizer
 
-with open("sentiment_model.pkl", "rb") as f:
-    model = pickle.load(f)
-with open("vectorizer.pkl", "rb") as f:
-    vectorizer = pickle.load(f)
-print("Model and vectorizer loaded successfully")
+# Load and test model and vectorizer
+with open("sentiment_model.pkl", "rb") as model_file:
+    model = pickle.load(model_file)
+with open("vectorizer.pkl", "rb") as vectorizer_file:
+    vectorizer = pickle.load(vectorizer_file)
+
+# Simple test to ensure they load
+assert model is not None
+assert vectorizer is not None
+
+# Add newline at end
