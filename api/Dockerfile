@@ -1,0 +1,9 @@
+FROM python:3.13-slim
+WORKDIR /app
+COPY ../requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+COPY api/. /app/
+RUN ls -la /app  # Debug step to verify files
+ENV PYTHONPATH=/app
+ENV DOCKER_ENV=1
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001", "--reload"]

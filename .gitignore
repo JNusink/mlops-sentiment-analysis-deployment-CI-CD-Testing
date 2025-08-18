@@ -1,0 +1,4 @@
+api/IMDB Dataset.csv
+.venv/
+__pycache__/
+*.pyc
