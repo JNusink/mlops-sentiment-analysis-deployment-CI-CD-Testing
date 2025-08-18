@@ -6,10 +6,10 @@ import os
 
 app = FastAPI()
 
-# Set up logging
-log_dir = "/app/logs"
-if not os.path.exists(log_dir):
-    os.makedirs(log_dir)
+# Set up logging (project-relative logs folder, not /app)
+current_dir = os.path.dirname(__file__)
+log_dir = os.path.join(current_dir, "..", "logs")
+os.makedirs(log_dir, exist_ok=True)
 
 logging.basicConfig(
     filename=os.path.join(log_dir, "sentiment.log"),
@@ -43,7 +43,6 @@ async def predict_sentiment(input_data: TextInput):
             f"Text: {input_data.text}, Sentiment: {sentiment}, "
             f"Confidence: {confidence:.2f}"
         )
-
         return {"sentiment": sentiment, "confidence": float(confidence)}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))

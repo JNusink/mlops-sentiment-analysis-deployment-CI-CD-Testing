@@ -13,24 +13,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.13.7'
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt --only-binary :all:
-        pip install flake8 pytest
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install flake8 pytest
 
-    - name: Lint with flake8
-      run: |
-        flake8 . --max-line-length=88 --extend-ignore=E203 --exclude=./api/venv,./monitoring/venv,./.venv
+      - name: Lint with flake8
+        run: flake8 .
 
-    - name: Test with pytest
-      run: |
-        pytest
+      - name: Train model (create sentiment_model.pkl & vectorizer.pkl)
+        run: python api/train_model.py
+
+      - name: Run tests with pytest
+        run: pytest -v
