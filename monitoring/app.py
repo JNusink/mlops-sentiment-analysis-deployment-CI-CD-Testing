@@ -1,7 +1,6 @@
 import streamlit as st
 import os
 import pandas as pd
-from datetime import datetime
 
 # Set log directory
 log_dir = "/app/logs"

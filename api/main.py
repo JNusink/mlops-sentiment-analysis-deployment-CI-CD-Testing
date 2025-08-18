@@ -3,7 +3,6 @@ from pydantic import BaseModel
 import pickle
 import logging
 import os
-from sklearn.linear_model import LogisticRegression
 
 app = FastAPI()
 
@@ -15,8 +14,12 @@ logging.basicConfig(filename=os.path.join(log_dir, "sentiment.log"),
                     level=logging.INFO,
                     format="%(asctime)s - %(message)s")
 
+# Add blank line here
+
 class TextInput(BaseModel):
     text: str
+
+# Add two blank lines here
 
 # Load model and vectorizer
 with open("sentiment_model.pkl", "rb") as model_file:
@@ -24,7 +27,8 @@ with open("sentiment_model.pkl", "rb") as model_file:
 with open("vectorizer.pkl", "rb") as vectorizer_file:
     vectorizer = pickle.load(vectorizer_file)
 
-# Predict endpoint
+# Add two blank lines here
+
 @app.post("/predict")
 async def predict_sentiment(input_data: TextInput):
     try:
