@@ -23,4 +23,4 @@ with open("sentiment_model.pkl", "wb") as model_file:
 with open("vectorizer.pkl", "wb") as vectorizer_file:
     pickle.dump(vectorizer, vectorizer_file)
 
-# Add newline at end
+

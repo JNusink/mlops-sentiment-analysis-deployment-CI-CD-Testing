@@ -14,12 +14,16 @@ logging.basicConfig(filename=os.path.join(log_dir, "sentiment.log"),
                     level=logging.INFO,
                     format="%(asctime)s - %(message)s")
 
-# Add two blank lines here
+
+
+
 
 class TextInput(BaseModel):
     text: str
 
-# Add two blank lines here
+
+
+
 
 # Load model and vectorizer
 with open("sentiment_model.pkl", "rb") as model_file:
@@ -27,7 +31,9 @@ with open("sentiment_model.pkl", "rb") as model_file:
 with open("vectorizer.pkl", "rb") as vectorizer_file:
     vectorizer = pickle.load(vectorizer_file)
 
-# Add two blank lines here
+
+
+
 
 @app.post("/predict")
 async def predict_sentiment(input_data: TextInput):
@@ -43,4 +49,4 @@ async def predict_sentiment(input_data: TextInput):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# Add newline at end
+

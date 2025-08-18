@@ -22,4 +22,4 @@ if not df.empty:
 else:
     st.write("No logs available yet.")
 
-# Add newline at end
+
