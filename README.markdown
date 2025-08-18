@@ -70,7 +70,7 @@ Welcome to the MLOps Sentiment Analysis Deployment CI/CD Testing project by JNus
 2. Run the containers:
    ```powershell
    cd api
-   docker run -d -p 8000:8000 -v shared-logs:/app/logs --name api-container sentiment-api
+   docker run -d -p 8001:8001 -v shared-logs:/app/logs --name api sentiment-api
    cd ..\monitoring
    docker run -d -p 8501:8501 -v shared-logs:/app/logs --name monitoring-container sentiment-monitoring
    ```
@@ -101,7 +101,7 @@ Welcome to the MLOps Sentiment Analysis Deployment CI/CD Testing project by JNus
 6. **Key Pair**: Create `sentiment-key` (RSA, .pem), download to project directory.
 7. **Security Group**: Create `sentiment-sg` with rules:
    - SSH (port 22): Source = "My IP".
-   - HTTP (port 8000): Source = "Anywhere-IPv4" (0.0.0.0/0).
+   - HTTP (port 8001): Source = "Anywhere-IPv4" (0.0.0.0/0).
    - Custom TCP (port 8501): Source = "Anywhere-IPv4" (0.0.0.0/0).
 8. **Storage**: Default (8 GiB gp3).
 9. Launch and note the public IP (e.g., `3.14.15.92`).
@@ -131,13 +131,13 @@ Welcome to the MLOps Sentiment Analysis Deployment CI/CD Testing project by JNus
    docker volume create shared-logs
    cd api
    docker build -t sentiment-api .
-   docker run -d -p 8000:8000 -v shared-logs:/app/logs --name api sentiment-api
+   docker run -d -p 8001:8001 -v shared-logs:/app/logs --name api sentiment-api
    cd ../monitoring
    docker build -t sentiment-monitoring .
    docker run -d -p 8501:8501 -v shared-logs:/app/logs --name monitoring sentiment-monitoring
    ```
 2. Test:
-   - API: http://YOUR_EC2_IP:8000/docs.
+   - API: http://YOUR_EC2_IP:8001/docs.
    - Dashboard: http://YOUR_EC2_IP:8501.
 
 ## CI/CD Pipeline
