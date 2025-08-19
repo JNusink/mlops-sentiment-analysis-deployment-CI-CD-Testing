@@ -16,12 +16,10 @@ logging.basicConfig(
     format="%(asctime)s - %(message)s"
 )
 
-# Two blank lines here
 
 class TextInput(BaseModel):
     text: str
 
-# Two blank lines here
 
 # Load model and vectorizer
 try:
@@ -33,7 +31,6 @@ except Exception as e:
     logging.error(f"Failed to load model or vectorizer: {str(e)}")
     raise HTTPException(status_code=500, detail=f"Model loading failed: {str(e)}")
 
-# Two blank lines here
 
 @app.post("/predict")
 async def predict_sentiment(input_data: TextInput):
