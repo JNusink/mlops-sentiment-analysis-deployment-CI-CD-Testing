@@ -7,6 +7,7 @@ logging.basicConfig(level=logging.INFO)
 
 # Two blank lines here
 
+
 def test_dashboard_launches():
     app_path = os.path.join(os.path.dirname(__file__), "app.py")
     proc = subprocess.Popen(
@@ -40,5 +41,3 @@ def test_dashboard_launches():
             except subprocess.TimeoutExpired:
                 proc.kill()
                 logging.error("Process killed due to timeout")
-
-# Single newline at end, no blank line
