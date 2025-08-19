@@ -1,8 +1,20 @@
+import os
 import pickle
-from sklearn.feature_extraction.text import TfidfVectorizer
+import pytest
 
-with open("sentiment_model.pkl", "rb") as f:
-    model = pickle.load(f)
-with open("vectorizer.pkl", "rb") as f:
-    vectorizer = pickle.load(f)
-print("Model and vectorizer loaded successfully")
+
+def test_pickle_files_exist():
+    if not (
+        os.path.exists("sentiment_model.pkl")
+        and os.path.exists("vectorizer.pkl")
+    ):
+        pytest.skip("Model/vectorizer pickle files not available.")
+
+    with open("sentiment_model.pkl", "rb") as model_file:
+        model = pickle.load(model_file)
+
+    with open("vectorizer.pkl", "rb") as vectorizer_file:
+        vectorizer = pickle.load(vectorizer_file)
+
+    assert model is not None
+    assert vectorizer is not None

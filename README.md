@@ -140,9 +140,10 @@ Welcome to the MLOps Sentiment Analysis Deployment CI/CD Testing project by JNus
    - API: http://YOUR_EC2_IP:8001/docs.
    - Dashboard: http://YOUR_EC2_IP:8501.
 
-## CI/CD Pipeline
-- **Planned**: Integrate with GitHub Actions for automated testing and deployment.
-- **Setup**: Create `.github/workflows/ci.yml` with test and build steps (to be implemented).
+### CI/CD Pipeline
+- **Implemented**: Automated testing and linting with GitHub Actions.
+- **Workflow**: `.github/workflows/ci.yml` triggers on pull requests to `main`, running on Ubuntu with Python 3.13.7. It installs dependencies, lints with flake8, and runs pytest tests for both API and dashboard.
+- **Setup**: The workflow is defined in `.github/workflows/ci.yml` and requires passing checks before merging.
 
 ## Troubleshooting
 - **Local Issues**: Check port availability, ensure files are in place.
