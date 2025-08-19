@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -5,7 +6,10 @@ from sklearn.linear_model import LogisticRegression
 import pickle
 
 # Load data
-df = pd.read_csv("IMDB Dataset.csv")
+current_dir = os.path.dirname(__file__)
+csv_path = os.path.join(current_dir, "IMDB Dataset.csv")
+
+df = pd.read_csv(csv_path)
 X = df["review"]
 y = df["sentiment"].map({"positive": 1, "negative": 0})
 
@@ -23,4 +27,5 @@ with open("sentiment_model.pkl", "wb") as model_file:
     pickle.dump(model, model_file)
 
 with open("vectorizer.pkl", "wb") as vectorizer_file:
-    pickle.dump(vectorizer, vectorizer_file)
+    pickle.dump(vectorizer, vectorizer_file) 
+
